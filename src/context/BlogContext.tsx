@@ -48,12 +48,7 @@ export const BlogContextProvider = ({ children }: BlogContextProviderI) => {
     return () => setFetch(false);
   }, [fetch]);
 
-  const blogWithCategories = async (category: string) => {
-    setLoading(true)
-    const result = await Api.categoryWiseBlogs(category);
-    if(result.status===200) return setLoading(false)
-    setBlogs(result.data as BlogI[]);
-  };
+
 
   const fullBlog = (blog: BlogI) => {
     setBlog(blog);
@@ -104,7 +99,6 @@ export const BlogContextProvider = ({ children }: BlogContextProviderI) => {
         setBlogs,
         fetch,
         setFetch,
-        blogWithCategories,
         blog,
         setBlog,
         fullBlog,
@@ -113,7 +107,8 @@ export const BlogContextProvider = ({ children }: BlogContextProviderI) => {
         handleUpdateBlog,
         setQuery,
         query,
-        loading
+        loading,
+        setLoading
       }}
     >
       {children}

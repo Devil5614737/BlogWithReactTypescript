@@ -4,10 +4,29 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { BlogContext } from "../context/BlogContext";
 import { BlogContextI } from "../interfaces/BlogContextI";
+import { BlogI } from "../interfaces/BlogI";
+import Api from '../api/blog'
 
 export const Categories = () => {
-  const { blogWithCategories, setBlog } = useContext<BlogContextI>(BlogContext);
+  const {  setBlog,setBlogs ,setLoading} = useContext<BlogContextI>(BlogContext);
   const navigate = useNavigate();
+
+
+
+  const blogWithCategories = async (category: string) => {
+    setLoading(true)
+    const result = await Api.categoryWiseBlogs(category);
+    
+    if(result.status===200) {
+      setLoading(false)
+      setBlogs(result.data as BlogI[]);
+      
+    }
+
+  };
+
+
+
   return (
     <Nav variant="pills" defaultActiveKey="/home">
       <Nav.Item>

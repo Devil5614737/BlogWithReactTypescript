@@ -5,7 +5,6 @@ export interface BlogContextI{
     setBlogs:(blogs:BlogI[])=>void,
     fetch:boolean,
     setFetch:(fetch:boolean)=>any,
-    blogWithCategories:(category:string)=>void,
     blog?:BlogI,
     setBlog:(blog:BlogI)=>void,
     fullBlog:(blog:BlogI)=>void,
@@ -14,5 +13,6 @@ export interface BlogContextI{
     handleUpdateBlog:(blogId:string,title:string, content:string, image:string, category:string)=>void
     setQuery:(query:string)=>void,
     query:string,
-    loading:boolean
+    loading:boolean,
+    setLoading:(loading:boolean)=>void
 }
